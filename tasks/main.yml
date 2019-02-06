@@ -1,0 +1,37 @@
+---
+# Set environment
+
+- name: environment | ensure http proxy
+  lineinfile:
+    path: /etc/environment
+    create: true
+    regexp: "^http_proxy="
+    line: "http_proxy={{ http_proxy }}"
+    state: present
+    owner: root
+    group: root
+    mode: 0644
+
+- name: environment | ensure https proxy
+  lineinfile:
+    path: /etc/environment
+    create: true
+    regexp: "^https_proxy="
+    line: "https_proxy={{ https_proxy }}"
+    state: present
+
+- name: environment | ensure ftp proxy
+  lineinfile:
+    path: /etc/environment
+    create: true
+    regexp: "^ftp_proxy="
+    line: "ftp_proxy={{ ftp_proxy }}"
+    state: present
+
+- name: environment | ensure no proxy
+  lineinfile:
+    path: /etc/environment
+    create: true
+    regexp: "^no_proxy="
+    line: "no_proxy={{ no_proxy }}"
+    state: present
